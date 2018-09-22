@@ -6,8 +6,8 @@
 - Postgresql
 
 ## Setup
-- bundle
-- rails db:create db:migrate db:seed
+- `bundle`
+- `rails db:create db:migrate db:seed`
 
 ## Development
 `rails s`
