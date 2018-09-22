@@ -4,5 +4,12 @@ AllCops:
 Rails:
   Enabled: true
 
+Style/ClassAndModuleChildren:
+  Exclude:
+    - "**/*.rb"
+
+Style/Documentation:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
