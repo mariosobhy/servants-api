@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def index
-    pp current_user
     load_users
     render json: @users
   end
