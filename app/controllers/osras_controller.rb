@@ -60,6 +60,9 @@ class OsrasController < ApplicationController
   end
 
   def osra_params
-    params.require(:osra).permit(:name)
+    params.require(:osra).permit(
+      :name,
+      osra_servants_attributes: %i[id user_id _destroy]
+    )
   end
 end

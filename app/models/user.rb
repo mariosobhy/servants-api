@@ -4,4 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,# :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  has_many :osra_servants, dependent: :destroy
+  has_many :osras, through: :osra_servants
 end
