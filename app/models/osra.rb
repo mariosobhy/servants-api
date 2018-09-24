@@ -1,0 +1,2 @@
+class Osra < ApplicationRecord
+end
