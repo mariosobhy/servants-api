@@ -55,7 +55,7 @@ class OsrasController < ApplicationController
 
   def render_osra_errors
     render json: {
-      error: @osra.errors.full_messages.to_sentence
+      error: @osra.errors.values.join(', ')
     }, status: :bad_request
   end
 

@@ -2,11 +2,11 @@ class OsraSerializer
   include FastJsonapi::ObjectSerializer
   attributes :name
 
-  attribute :servants do |object|
-    object.servants.map do |s|
+  attribute :osra_servants do |object|
+    object.osra_servants.map do |s|
       {
         id: s.id,
-        name: s.name,
+        name: s.user.name
       }
     end
   end
