@@ -1,12 +1,12 @@
 class OsrasController < ApplicationController
   def index
     load_osras
-    render json: @osras
+    render json: OsraSerializer.new(@osras).serializable_hash
   end
 
   def show
     load_osra
-    render json: @osra
+    render_osra
   end
 
   def create
@@ -23,7 +23,7 @@ class OsrasController < ApplicationController
   def destroy
     load_osra
     @osra.destroy
-    render json: @osra
+    render_osra
   end
 
   private
@@ -43,10 +43,14 @@ class OsrasController < ApplicationController
 
   def save_osra
     if @osra.save
-      render json: @osra
+      render_osra
     else
       render_osra_errors
     end
+  end
+
+  def render_osra
+    render json: OsraSerializer.new(@osra).serializable_hash
   end
 
   def render_osra_errors
