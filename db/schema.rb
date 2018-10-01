@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_24_221512) do
+ActiveRecord::Schema.define(version: 2018_09_30_215345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "osra_meetings", force: :cascade do |t|
+    t.bigint "osra_id"
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.time "from"
+    t.time "to"
+    t.string "repeat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["osra_id"], name: "index_osra_meetings_on_osra_id"
+  end
 
   create_table "osra_servants", force: :cascade do |t|
     t.bigint "osra_id"
