@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :osras, except: %i[new edit] do
     resources :osra_meetings, except: %i[index new edit]
   end
+
+  resources :events, only: %i[] do
+    resources :attendees, only: %i[create destroy]
+  end
 end

@@ -15,6 +15,17 @@ class OsraMeetingSerializer
       {
         id: e.id,
         date: e.date,
+        attendees_cnt: e.attendees.count,
+        attendees: AttendeeSerializer.new(e.attendees).serializable_hash,
+      }
+    end
+  end
+
+  attribute :osra_servants do |object|
+    object.osra.servants.map do |s|
+      {
+        label: s.name,
+        value: s.id,
       }
     end
   end

@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 
   has_many :osra_servants, dependent: :destroy
   has_many :osras, through: :osra_servants
+  has_many :attendees, dependent: :destroy
 end
