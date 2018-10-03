@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2018-10-03
+  eventable: one
+  eventable_type: Eventable
+
+two:
+  date: 2018-10-03
+  eventable: two
+  eventable_type: Eventable
