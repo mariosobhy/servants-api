@@ -9,4 +9,13 @@ class OsraMeetingSerializer
   attribute :to do |object|
     object.to.strftime('%H:%M')
   end
+
+  attribute :events do |object|
+    object.events.map do |e|
+      {
+        id: e.id,
+        date: e.date,
+      }
+    end
+  end
 end
