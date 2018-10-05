@@ -55,13 +55,14 @@ class BibleStudiesController < ApplicationController
 
   def render_bible_study_errors
     render json: {
-      error: @bible_study.errors.full_messages.to_sentence
+      error: @bible_study.errors.values.join(', ')
     }, status: :bad_request
   end
 
   def bible_study_params
     params.require(:bible_study).permit(
-      :name, :user_id, :total_score
+      :name, :user_id, :total_score,
+      bible_study_servants_attributes: %i[id user_id _destroy]
     )
   end
 end

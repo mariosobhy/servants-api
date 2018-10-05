@@ -1,6 +1,6 @@
 class BibleStudySerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :total_score
+  attributes :name, :user_id, :total_score
 
   attribute :responsible do |object|
     {
@@ -10,13 +10,12 @@ class BibleStudySerializer
   end
 
   attribute :bible_study_servants do |object|
-    # object.bible_study_servants.map do |s|
-    #   {
-    #     id: s.id,
-    #     name: s.user.name
-    #   }
-    # end
-    []
+    object.bible_study_servants.map do |s|
+      {
+        id: s.id,
+        name: s.user.name
+      }
+    end
   end
 
   attribute :bible_study_meetings do |object|
