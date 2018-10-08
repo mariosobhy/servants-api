@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :osra_meetings, except: %i[index new edit]
   end
 
-  resources :bible_studies, except: %i[new edit]
+  resources :bible_studies, except: %i[new edit] do
+    resources :bible_study_meetings, except: %i[index new edit]
+  end
 
   resources :events, only: %i[] do
     resources :attendees, only: %i[create destroy]

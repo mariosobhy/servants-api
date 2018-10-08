@@ -19,12 +19,11 @@ class BibleStudySerializer
   end
 
   attribute :bible_study_meetings do |object|
-    # object.bible_study_meetings.map do |m|
-    #   {
-    #     id: m.id,
-    #     name: m.name
-    #   }
-    # end
-    []
+    object.bible_study_meetings.map do |m|
+      {
+        id: m.id,
+        name: m.name
+      }
+    end
   end
 end
