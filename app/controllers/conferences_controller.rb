@@ -61,7 +61,8 @@ class ConferencesController < ApplicationController
 
   def conference_params
     params.require(:conference).permit(
-      :name, :price, :place, :no_of_servants
+      :name, :price, :place, :no_of_servants,
+      conference_servants_attributes: %i[id user_id _destroy]
     )
   end
 end

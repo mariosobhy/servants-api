@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_233029) do
+ActiveRecord::Schema.define(version: 2018_10_17_233825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 2018_10_17_233029) do
     t.datetime "updated_at", null: false
     t.index ["bible_study_id"], name: "index_bible_study_servants_on_bible_study_id"
     t.index ["user_id"], name: "index_bible_study_servants_on_user_id"
+  end
+
+  create_table "conference_servants", force: :cascade do |t|
+    t.bigint "conferece_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conferece_id"], name: "index_conference_servants_on_conferece_id"
+    t.index ["user_id"], name: "index_conference_servants_on_user_id"
   end
 
   create_table "conferences", force: :cascade do |t|
