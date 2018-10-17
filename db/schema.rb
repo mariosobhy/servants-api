@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_223429) do
 
   create_table "course_meetings", force: :cascade do |t|
     t.bigint "course_id"
+    t.string "name"
     t.date "start_date"
     t.date "end_date"
     t.time "from"
