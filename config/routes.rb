@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :conferences, except: %i[new edit]
 
+  resources :spiritual_days, except: %i[new edit]
+
   resources :events, only: %i[] do
     resources :attendees, only: %i[create destroy]
   end
