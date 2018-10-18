@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_233825) do
+ActiveRecord::Schema.define(version: 2018_10_18_001352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,24 @@ ActiveRecord::Schema.define(version: 2018_10_17_233825) do
 
   create_table "osras", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spiritual_day_servants", force: :cascade do |t|
+    t.bigint "spiritual_day_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spiritual_day_id"], name: "index_spiritual_day_servants_on_spiritual_day_id"
+    t.index ["user_id"], name: "index_spiritual_day_servants_on_user_id"
+  end
+
+  create_table "spiritual_days", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.string "place"
+    t.integer "no_of_servants"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
