@@ -1,7 +1,7 @@
 class ConferencesController < ApplicationController
   def index
     load_conferences
-    render json: ConfereceSerializer.new(@conferences).serializable_hash
+    render json: ConferenceSerializer.new(@conferences).serializable_hash
   end
 
   def show

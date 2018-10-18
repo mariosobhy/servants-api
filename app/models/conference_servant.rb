@@ -1,6 +1,6 @@
 class ConferenceServant < ApplicationRecord
-  belongs_to :conferece
+  belongs_to :conference
   belongs_to :user
 
-  validates :user, uniqueness: { scope: :bible_study, message: 'Servant has already been taken!' }
+  validates :user, uniqueness: { scope: :conference, message: 'Servant has already been taken!' }
 end

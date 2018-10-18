@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 2018_10_17_233825) do
   end
 
   create_table "conference_servants", force: :cascade do |t|
-    t.bigint "conferece_id"
+    t.bigint "conference_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conferece_id"], name: "index_conference_servants_on_conferece_id"
+    t.index ["conference_id"], name: "index_conference_servants_on_conference_id"
     t.index ["user_id"], name: "index_conference_servants_on_user_id"
   end
 
