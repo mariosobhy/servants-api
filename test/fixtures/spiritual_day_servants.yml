@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spiritual_day: one
+  user: one
+
+two:
+  spiritual_day: two
+  user: two
