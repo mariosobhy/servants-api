@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_131458) do
+ActiveRecord::Schema.define(version: 2019_02_10_184643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,21 @@ ActiveRecord::Schema.define(version: 2019_02_10_131458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable_type_and_eventable_id"
+  end
+
+  create_table "osra_meeting_servants", force: :cascade do |t|
+    t.bigint "osra_meeting_id"
+    t.bigint "osra_servant_id"
+    t.boolean "pray_before_sevice", default: false
+    t.boolean "preparation", default: false
+    t.boolean "speech", default: false
+    t.string "visiting_abscene"
+    t.string "phone_abscene"
+    t.boolean "osra_meeting_preparation", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["osra_meeting_id"], name: "index_osra_meeting_servants_on_osra_meeting_id"
+    t.index ["osra_servant_id"], name: "index_osra_meeting_servants_on_osra_servant_id"
   end
 
   create_table "osra_meetings", force: :cascade do |t|
