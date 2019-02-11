@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_001352) do
+ActiveRecord::Schema.define(version: 2019_02_10_184643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 2018_10_18_001352) do
     t.datetime "updated_at", null: false
     t.index ["bible_study_id"], name: "index_bible_study_servants_on_bible_study_id"
     t.index ["user_id"], name: "index_bible_study_servants_on_user_id"
+  end
+
+  create_table "churches", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.string "city"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "conference_servants", force: :cascade do |t|
@@ -112,6 +121,21 @@ ActiveRecord::Schema.define(version: 2018_10_18_001352) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable_type_and_eventable_id"
+  end
+
+  create_table "osra_meeting_servants", force: :cascade do |t|
+    t.bigint "osra_meeting_id"
+    t.bigint "osra_servant_id"
+    t.boolean "pray_before_sevice", default: false
+    t.boolean "preparation", default: false
+    t.boolean "speech", default: false
+    t.string "visiting_abscene"
+    t.string "phone_abscene"
+    t.boolean "osra_meeting_preparation", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["osra_meeting_id"], name: "index_osra_meeting_servants_on_osra_meeting_id"
+    t.index ["osra_servant_id"], name: "index_osra_meeting_servants_on_osra_servant_id"
   end
 
   create_table "osra_meetings", force: :cascade do |t|
@@ -189,6 +213,8 @@ ActiveRecord::Schema.define(version: 2018_10_18_001352) do
     t.date "confession_date"
     t.date "holymass_date"
     t.date "tnawol_date"
+    t.bigint "church_id"
+    t.index ["church_id"], name: "index_users_on_church_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
