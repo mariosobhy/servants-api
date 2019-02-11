@@ -10,5 +10,4 @@ class User < ApplicationRecord
   has_many :attendees, dependent: :destroy
   has_many :bible_study_responsibilities, class_name: 'BibleStudy', foreign_key: 'user_id', inverse_of: :responisble, dependent: :destroy
   has_many :course_responsibilities, class_name: 'Course', foreign_key: 'user_id', inverse_of: :responisble, dependent: :destroy
-  belongs_to :church, inverse_of: :servants 
 end
