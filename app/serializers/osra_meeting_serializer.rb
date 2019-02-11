@@ -29,4 +29,13 @@ class OsraMeetingSerializer
       }
     end
   end
+
+  attribute :meeting_servants do |object| 
+    object.osra_servants.map do |s|
+      {
+        label: s.user.name,
+        value: s.user.id,
+      }
+    end 
+  end 
 end
