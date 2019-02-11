@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  osra_meeting: one
+  osra_servant: one
+  pray_before_sevice: false
+  preparation: false
+  speech: false
+  visiting_abscene: MyString
+  phone_abscene: MyString
+  osra_meeting_preparation: false
+
+two:
+  osra_meeting: two
+  osra_servant: two
+  pray_before_sevice: false
+  preparation: false
+  speech: false
+  visiting_abscene: MyString
+  phone_abscene: MyString
+  osra_meeting_preparation: false
