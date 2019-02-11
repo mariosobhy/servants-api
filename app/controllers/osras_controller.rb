@@ -29,11 +29,11 @@ class OsrasController < ApplicationController
   private
 
   def load_osras
-    @osras = current_user.osras 
+    @osras = Osra.all
   end
 
   def load_osra
-    @osra = current_user.osras.find(params[:id])
+    @osra = Osra.find(params[:id])
   end
 
   def build_osra

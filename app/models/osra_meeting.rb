@@ -3,8 +3,6 @@ class OsraMeeting < ApplicationRecord
 
   belongs_to :osra
   has_many :events, as: :eventable, dependent: :destroy
-  has_many :osra_meeting_servants, dependent: :destroy 
-  has_many :osra_servants, through: :osra_meeting_servants
 
   validates :name,
             :start_date,
