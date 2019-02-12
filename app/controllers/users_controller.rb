@@ -29,11 +29,11 @@ class UsersController < ApplicationController
   private
 
   def load_users
-    @users = User.all
+    @users = current_user.church.servants
   end
 
   def load_user
-    @user = User.find(params[:id])
+    @user = current_user.church.servants.find(params[:id])
   end
 
   def build_user
