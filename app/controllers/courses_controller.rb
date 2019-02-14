@@ -62,7 +62,8 @@ class CoursesController < ApplicationController
   def course_params
     params.require(:course).permit(
       :name, :no_of_lectures, :user_id, :total_score,
-      course_servants_attributes: %i[id user_id _destroy]
+      course_servants_attributes: %i[id user_id _destroy],
+      lectures_attributes: %i[id name start_time end_time course_id _destroy]
     )
   end
 end

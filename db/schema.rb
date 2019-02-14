@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_184643) do
+ActiveRecord::Schema.define(version: 2019_02_13_232536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,25 @@ ActiveRecord::Schema.define(version: 2019_02_10_184643) do
     t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable_type_and_eventable_id"
   end
 
+  create_table "lectures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_lectures_on_course_id"
+  end
+
+  create_table "material_links", force: :cascade do |t|
+    t.string "label"
+    t.string "url"
+    t.bigint "lecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lecture_id"], name: "index_material_links_on_lecture_id"
+  end
+
   create_table "osra_meeting_servants", force: :cascade do |t|
     t.bigint "osra_meeting_id"
     t.bigint "osra_servant_id"
@@ -182,6 +201,15 @@ ActiveRecord::Schema.define(version: 2019_02_10_184643) do
     t.integer "no_of_servants"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.bigint "lecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lecture_id"], name: "index_topics_on_lecture_id"
   end
 
   create_table "users", force: :cascade do |t|
