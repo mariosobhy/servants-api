@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :courses, except: %i[new edit] do
+    resources :lectures, except: %i[new edit]
     resources :course_meetings, except: %i[index new edit]
   end
 

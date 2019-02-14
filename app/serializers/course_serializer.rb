@@ -26,4 +26,15 @@ class CourseSerializer
       }
     end
   end
+
+  attribute :lectures do |object| 
+    object.lectures.map do |m| 
+      {
+        id: m.id, 
+        name: m.name, 
+        topics: TopicSerializer.new(m.topics).serializable_hash, 
+        material_links: MaterialLinkSerializer.new(m.material_links).serializable_hash
+      }
+    end 
+  end 
 end
