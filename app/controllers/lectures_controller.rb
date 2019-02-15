@@ -3,6 +3,7 @@ class LecturesController < ApplicationController
   before_action :load_lectures, only: %i[index]
   before_action :load_lecture, only: %i[show update destroy]
   before_action :build_lecture, only: %i[create update]
+
   def index
     render json: LectureSerializer.new(@lectures).serializable_hash
   end
