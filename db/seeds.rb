@@ -13,5 +13,5 @@ User.create!(
   email: 'admin@example.com',
   password: 'admin@example.com',
   church: church,
-  phone_number: '01011676126'
+  mobile_number: '01011676126'
 )
