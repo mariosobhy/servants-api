@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_022940) do
+ActiveRecord::Schema.define(version: 2019_02_24_120537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 2019_02_18_022940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "no_of_attendees", default: 0
+    t.datetime "from"
+    t.datetime "to"
   end
 
   create_table "course_meetings", force: :cascade do |t|
@@ -101,6 +103,8 @@ ActiveRecord::Schema.define(version: 2019_02_18_022940) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score_type", default: 0
+    t.float "total_score", default: 0.0
     t.index ["course_id"], name: "index_course_servants_on_course_id"
     t.index ["user_id"], name: "index_course_servants_on_user_id"
   end
