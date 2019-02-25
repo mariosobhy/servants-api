@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2019_02_24_120537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "no_of_attendees", default: 0
-    t.datetime "from"
-    t.datetime "to"
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "course_meetings", force: :cascade do |t|
