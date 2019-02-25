@@ -8,4 +8,6 @@ class SpiritualDay < ApplicationRecord
             presence: true
 
   accepts_nested_attributes_for :spiritual_day_servants, allow_destroy: true, reject_if: proc { |attributes| attributes['user_id'].blank? }
+
+  scope :by_date, -> (date) { where("extract(day from start_date) = ?", DateTime.parse(date).day) } 
 end

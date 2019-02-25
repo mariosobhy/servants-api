@@ -29,7 +29,11 @@ class SpiritualDaysController < ApplicationController
   private
 
   def load_spiritual_days
-    @spiritual_days = SpiritualDay.all
+    @spiritual_days = if params[:date] 
+                        SpiritualDay.by_date(params[:date])
+                      else     
+                        SpiritualDay.all
+                      end 
   end
 
   def load_spiritual_day
@@ -61,7 +65,7 @@ class SpiritualDaysController < ApplicationController
 
   def spiritual_day_params
     params.require(:spiritual_day).permit(
-      :name, :price, :place, :no_of_servants,
+      :name, :price, :start_date, :end_date, :place, :no_of_servants,
       spiritual_day_servants_attributes: %i[id user_id _destroy]
     )
   end
