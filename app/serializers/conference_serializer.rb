@@ -1,6 +1,6 @@
 class ConferenceSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :place, :price, :from, :to, :no_of_servants, :no_of_attendees
+  attributes :name, :place, :price, :start_date, :end_date, :no_of_servants, :no_of_attendees
 
   attribute :conference_servants do |object|
     object.conference_servants.map do |s|

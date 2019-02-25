@@ -29,7 +29,11 @@ class ConferencesController < ApplicationController
   private
 
   def load_conferences
-    @conferences = Conference.all
+    @conferences = if params[:date] 
+                    Conference.by_date(params[:date])
+                   else 
+                    Conference.all
+                   end 
   end
 
   def load_conference
