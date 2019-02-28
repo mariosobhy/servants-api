@@ -13,4 +13,7 @@ class User < ApplicationRecord
   belongs_to :church, inverse_of: :servants 
 
   validates :mobile_number, phone: true
+
+  # default scope will be filtered by current month
+  scope :by_month, -> (date = DateTime.now.month) { where('extract(month from birth_date) = ?', date)  }
 end
