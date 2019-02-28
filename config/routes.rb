@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   resources :events, only: %i[] do
     resources :attendees, only: %i[create destroy]
   end
+  resources :birthday_reports, only: :index
 end
