@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :osras, except: %i[new edit] do
     resources :osra_meetings, except: %i[index new edit]
+    resources :classrooms
   end
 
   resources :bible_studies, except: %i[new edit] do

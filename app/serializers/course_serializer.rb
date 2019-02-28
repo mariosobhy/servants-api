@@ -5,7 +5,7 @@ class CourseSerializer
   attribute :responsible do |object|
     {
       id: object.responsible.id,
-      name: object.responsible.name,
+      name: object.responsible.name
     }
   end
 
