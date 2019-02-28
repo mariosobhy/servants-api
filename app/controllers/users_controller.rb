@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   def index
     load_users
-    render json: @users
+    render json: UserSerializer.new(@users).serializable_hash
   end
 
   def show
     load_user
-    render json: @user
+    render_user 
   end
 
   def create
@@ -48,6 +48,10 @@ class UsersController < ApplicationController
       render_user_errors
     end
   end
+
+  def render_user 
+    render json: UserSerializer.new(@user).serializable_hash
+  end 
 
   def render_user_errors
     render json: {
