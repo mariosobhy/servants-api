@@ -19,4 +19,13 @@ class OsraSerializer
       }
     end
   end
+
+  attribute :classrooms do |object| 
+    object.classrooms.map do |m|
+      {
+        id: m.id,
+        name: m.name
+      }
+    end 
+  end   
 end

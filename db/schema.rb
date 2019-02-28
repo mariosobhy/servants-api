@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_114110) do
+ActiveRecord::Schema.define(version: 2019_02_28_150722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,25 @@ ActiveRecord::Schema.define(version: 2019_02_25_114110) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "classroom_servants", force: :cascade do |t|
+    t.bigint "classroom_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classroom_servants_on_classroom_id"
+    t.index ["user_id"], name: "index_classroom_servants_on_user_id"
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.bigint "osra_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["osra_id"], name: "index_classrooms_on_osra_id"
+    t.index ["user_id"], name: "index_classrooms_on_user_id"
   end
 
   create_table "conference_servants", force: :cascade do |t|
@@ -116,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_114110) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score_type", default: 0
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -135,6 +155,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_114110) do
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "score", default: 0.0
     t.index ["course_id"], name: "index_lectures_on_course_id"
   end
 
