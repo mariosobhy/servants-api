@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   def save_user
     if @user.save
-      render json: @user
+      render json: UserSerializer.new(@user).serializable_hash
     else
       render_user_errors
     end
@@ -60,6 +60,10 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :church_id, :password, :password_confrimation, :mobile_number, :birth_date, :confession_date, :holymass_date, :tnawol_date)
+    params.require(:user).permit(:name, :email, :church_id, :password, :password_confirmation,
+                                 :address, :birth_date, :holymass_date,
+                                 :tnawol_date, hobbies_attributes: %i[ id user_id name _destroy],
+                                 mobile_numbers_attributes: %i[id user_id number _destroy],
+                                 confession_date: [], tnawol_date: [])
   end
 end

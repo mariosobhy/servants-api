@@ -1,6 +1,6 @@
 class UserSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :email, :mobile_number, :birth_date, :confession_date, :holymass_date, :tnawol_date
+  attributes :name, :email, :birth_date, :address, :confession_date, :holymass_date, :tnawol_date
 
   attribute :church do |object| 
     {
@@ -13,6 +13,22 @@ class UserSerializer
     object.osras.map do |m|
       {
         id: m.id,
+        name: m.name
+      }
+    end 
+  end 
+
+  attribute :mobile_numbers do |object| 
+    object.mobile_numbers.map do |m|
+      {
+        number: m.number
+      }
+    end 
+  end 
+
+  attribute :hobbies do |object| 
+    object.hobbies.map do |m| 
+      {
         name: m.name
       }
     end 
