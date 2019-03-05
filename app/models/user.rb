@@ -11,9 +11,12 @@ class User < ApplicationRecord
   has_many :bible_study_responsibilities, class_name: 'BibleStudy', foreign_key: 'user_id', inverse_of: :responisble, dependent: :destroy
   has_many :course_responsibilities, class_name: 'Course', foreign_key: 'user_id', inverse_of: :responisble, dependent: :destroy
   has_many :classroom_responsibilities, class_name: 'Classroom', foreign_key: 'user_id', inverse_of: :responsible, dependent: :destroy
+  has_many :hobbies, dependent: :destroy
+  has_many :mobile_numbers, dependent: :destroy
   belongs_to :church, inverse_of: :servants 
-
-  validates :mobile_number, phone: true
+  
+  accepts_nested_attributes_for :mobile_numbers, allow_destroy: true
+  accepts_nested_attributes_for :hobbies, allow_destroy: true
 
   # default scope will be filtered by current month
   scope :by_month, -> (date = DateTime.now.month) { where('extract(month from birth_date) = ?', date)  }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_150722) do
+ActiveRecord::Schema.define(version: 2019_03_03_183220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,14 @@ ActiveRecord::Schema.define(version: 2019_02_28_150722) do
     t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable_type_and_eventable_id"
   end
 
+  create_table "hobbies", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_hobbies_on_user_id"
+  end
+
   create_table "lectures", force: :cascade do |t|
     t.string "name"
     t.datetime "start_time"
@@ -166,6 +174,14 @@ ActiveRecord::Schema.define(version: 2019_02_28_150722) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_material_links_on_lecture_id"
+  end
+
+  create_table "mobile_numbers", force: :cascade do |t|
+    t.string "number"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mobile_numbers_on_user_id"
   end
 
   create_table "osra_meeting_servants", force: :cascade do |t|
@@ -264,12 +280,12 @@ ActiveRecord::Schema.define(version: 2019_02_28_150722) do
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "mobile_number"
     t.date "birth_date"
-    t.date "confession_date"
     t.date "holymass_date"
-    t.date "tnawol_date"
     t.bigint "church_id"
+    t.string "address"
+    t.datetime "tnawol_date", default: [], array: true
+    t.datetime "confession_date", default: [], array: true
     t.index ["church_id"], name: "index_users_on_church_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
