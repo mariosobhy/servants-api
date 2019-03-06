@@ -1,6 +1,7 @@
 class SpiritualDay < ApplicationRecord
   has_many :spiritual_day_servants, dependent: :destroy
   has_many :servants, through: :spiritual_day_servants
+  belongs_to :osra
 
   validates :name,
             :price,

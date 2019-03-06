@@ -28,4 +28,22 @@ class OsraSerializer
       }
     end 
   end   
+
+  attribute :conferences do |object|
+    object.conferences.map do |m|
+      {
+        id: m.id,
+        name: m.name
+      }
+    end 
+  end 
+
+  attribute :spiritual_days do |object|
+    object.spiritual_days.map do |m|
+      {
+        id: m.id,
+        name: m.name
+      }
+    end 
+  end 
 end

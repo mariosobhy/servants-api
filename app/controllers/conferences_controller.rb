@@ -59,13 +59,13 @@ class ConferencesController < ApplicationController
 
   def render_conference_errors
     render json: {
-      error: @conference.errors.values.join(', ')
+      error: @conference.errors.full_messages.join(', ')
     }, status: :bad_request
   end
 
   def conference_params
     params.require(:conference).permit(
-      :name, :price, :start_date, :end_date, :place, :no_of_attendees,
+      :name, :price, :osra_id, :start_date, :end_date, :place, :no_of_attendees,
       conference_servants_attributes: %i[id user_id _destroy]
     )
   end
