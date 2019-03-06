@@ -29,7 +29,11 @@ class OsrasController < ApplicationController
   private
 
   def load_osras
-    @osras = current_user.osras 
+    @osras = if params[:year]
+               current_user.osras.by_year(params[:year])
+             else 
+               current_user.osras.latest 
+             end 
   end
 
   def load_osra

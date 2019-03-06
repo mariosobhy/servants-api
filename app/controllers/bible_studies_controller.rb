@@ -29,7 +29,11 @@ class BibleStudiesController < ApplicationController
   private
 
   def load_bible_studies
-    @bible_studies = BibleStudy.all
+    @bible_studies = if params[:year] 
+                       BibleStudy.by_year(params[:year])
+                     else 
+                       BibleStudy.latest
+                     end 
   end
 
   def load_bible_study

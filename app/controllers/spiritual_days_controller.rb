@@ -31,8 +31,10 @@ class SpiritualDaysController < ApplicationController
   def load_spiritual_days
     @spiritual_days = if params[:date] 
                         SpiritualDay.by_date(params[:date])
+                      elsif params[:year]
+                        SpiritualDay.by_year(params[:year])
                       else     
-                        SpiritualDay.all
+                        SpiritualDay.latest
                       end 
   end
 

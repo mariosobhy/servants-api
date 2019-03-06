@@ -31,7 +31,11 @@ class ClassroomsController < ApplicationController
   private
 
   def load_classrooms
-    @classrooms = @osra.classrooms
+    @classrooms = if params[:year] 
+                    @osra.classrooms.by_year(params[:year])
+                  else 
+                    @osra.classrooms.latest
+                  end 
   end
 
   def load_osra 
