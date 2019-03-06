@@ -1,6 +1,7 @@
 class Conference < ApplicationRecord
   has_many :conference_servants, dependent: :destroy
   has_many :servants, through: :conference_servants, source: :user
+  belongs_to :osra
 
   validates :name,
             :price,
