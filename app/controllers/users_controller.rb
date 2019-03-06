@@ -29,7 +29,11 @@ class UsersController < ApplicationController
   private
 
   def load_users
-    @users = current_user.church.servants
+    @users = if params[:year]
+               current_user.churche.servants.by_year(params[:year])
+             else 
+               current_user.church.servants.latest
+             end 
   end
 
   def load_user

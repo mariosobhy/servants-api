@@ -29,7 +29,11 @@ class CoursesController < ApplicationController
   private
 
   def load_courses
-    @courses = Course.all
+    @courses = if params[:year]
+                 Course.by_year(params[:year])
+               else 
+                 Course.latest
+               end
   end
 
   def load_course

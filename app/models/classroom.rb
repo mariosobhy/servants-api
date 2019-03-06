@@ -6,4 +6,7 @@ class Classroom < ApplicationRecord
   has_many :servants, through: :classroom_servants, source: :user
 
   accepts_nested_attributes_for :classroom_servants, allow_destroy: true, reject_if: proc { |attributes| attributes['user_id'].blank? }
+
+  scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
+  scope :latest, -> { order('created_at DESC') }
 end

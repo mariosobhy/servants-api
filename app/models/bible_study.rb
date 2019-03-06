@@ -5,4 +5,7 @@ class BibleStudy < ApplicationRecord
   has_many :bible_study_meetings, dependent: :destroy
 
   accepts_nested_attributes_for :bible_study_servants, allow_destroy: true, reject_if: proc { |attributes| attributes['user_id'].blank? }
+
+  scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
+  scope :latest, -> { order('created_at DESC') }
 end

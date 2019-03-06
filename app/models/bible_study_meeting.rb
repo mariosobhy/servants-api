@@ -15,6 +15,9 @@ class BibleStudyMeeting < ApplicationRecord
 
   after_create_commit :create_events
 
+  scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
+  scope :latest, -> { order('created_at DESC') }
+
   private
 
   def create_events

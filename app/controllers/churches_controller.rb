@@ -27,7 +27,11 @@ class ChurchesController < ApplicationController
   private
 
   def load_churches
-    @churches = Church.all
+    @churches = if params[:year] 
+                  Church.by_year(params[:year])
+                else 
+                  Church.latest 
+                end 
   end
 
   def load_church

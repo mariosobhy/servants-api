@@ -28,7 +28,11 @@ class LecturesController < ApplicationController
   private
 
   def load_lectures
-    @lectures = @course.lectures.all
+    @lectures = if params[:year]
+                  @course.lectures.by_year(params[:year])
+                else 
+                  @course.lectures.latest
+                end 
   end
 
   def load_lecture

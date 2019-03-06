@@ -31,8 +31,10 @@ class ConferencesController < ApplicationController
   def load_conferences
     @conferences = if params[:date] 
                     Conference.by_date(params[:date])
+                   elsif params[:year] 
+                    Conference.by_year(params[:year])
                    else 
-                    Conference.all
+                    Conference.latest
                    end 
   end
 
