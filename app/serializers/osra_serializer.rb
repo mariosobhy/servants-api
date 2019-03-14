@@ -11,6 +11,15 @@ class OsraSerializer
     end
   end
 
+  attributes :amin_osras do |object|
+    object.amin_osras.map do |s|
+      {
+        id: s.id,
+        name: s.user.name
+      }
+    end 
+  end 
+
   attribute :osra_meetings do |object|
     object.osra_meetings.map do |m|
       {

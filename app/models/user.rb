@@ -19,7 +19,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :hobbies, allow_destroy: true
 
   # default scope will be filtered by current month
-  scope :by_month, -> (month = DateTime.now.month) { where('extract(month from birth_date) = ?', month)  }
+  scope :by_month, -> (month = DateTime.now.month) { where('extract(month from birth_date) = ?', month) }
   scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
   scope :latest, -> { order('created_at DESC') }
 end
