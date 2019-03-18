@@ -18,6 +18,7 @@ class OsraMeeting < ApplicationRecord
   after_create_commit :create_events
 
   scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
+  scope :by_date, -> (date) { where('DATE(start_date) = ?', date) }
   scope :latest, -> { order('created_at DESC') }
 
   private

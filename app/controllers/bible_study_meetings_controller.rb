@@ -1,6 +1,11 @@
 class BibleStudyMeetingsController < ApplicationController
   before_action :load_bible_study
 
+  def index 
+    load_bible_study_meetings
+    render json: BibleStudyMeetingSerializer.new(@bible_study_meetings).serializable_hash
+  end 
+
   def show
     load_meeting
     render_meeting
@@ -32,6 +37,16 @@ class BibleStudyMeetingsController < ApplicationController
   def load_meeting
     @meeting = @bible_study.bible_study_meetings.find(params[:id])
   end
+
+  def load_bible_study_meetings
+    @bible_study_meetings = if params[:date] 
+                              @bible_study.bible_study_meetings.by_date(params[:date])
+                            elsif params[:year] 
+                              @bible_study.bible_study_meetings.by_year(params[:year])
+                            else 
+                              @bible_study.bible_study_meetings.latest 
+                            end
+  end 
 
   def build_meeting
     @meeting ||= @bible_study.bible_study_meetings.new

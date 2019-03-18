@@ -1,6 +1,11 @@
 class CourseMeetingsController < ApplicationController
   before_action :load_course
 
+  def index 
+    load_course_meetings
+    render json: CourseMeetingSerializer.new(@course_meetings).serializable_hash
+  end 
+
   def show
     load_meeting
     render_meeting
@@ -32,6 +37,16 @@ class CourseMeetingsController < ApplicationController
   def load_meeting
     @meeting = @course.course_meetings.find(params[:id])
   end
+
+  def load_course_meetings 
+    @course_meetings = if params[:date] 
+                         @course.course_meetings.by_date(params[:date])
+                       elsif params[:year] 
+                         @course.course_meetings.by_year(params[:year])
+                       else 
+                         @course.course_meetings.latest 
+                       end 
+  end 
 
   def build_meeting
     @meeting ||= @course.course_meetings.new
