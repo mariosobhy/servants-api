@@ -1,6 +1,11 @@
 class OsraMeetingsController < ApplicationController
   before_action :load_osra
 
+  def index 
+    load_osra_meetings
+    render json: OsraMeetingSerializer.new(@osra_meetings).serializable_hash
+  end 
+
   def show
     load_meeting
     render_meeting
@@ -28,6 +33,16 @@ class OsraMeetingsController < ApplicationController
   def load_osra
     @osra = Osra.find(params[:osra_id])
   end
+
+  def load_osra_meetings 
+    @osra_meetings = if params[:date] 
+                       @osra.osra_meetings.by_date(params[:date])
+                     elsif params[:year] 
+                       @osra.osra_meetings.by_year(params[:year])
+                     else 
+                       @osra.osra_meetings.latest 
+                     end 
+  end 
 
   def load_meeting
     @meeting = @osra.osra_meetings.find(params[:id])

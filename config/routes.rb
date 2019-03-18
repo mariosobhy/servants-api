@@ -5,17 +5,17 @@ Rails.application.routes.draw do
   resources :churches, except: %i[new edit]
 
   resources :osras, except: %i[new edit] do
-    resources :osra_meetings, except: %i[index new edit]
+    resources :osra_meetings, except: %i[new edit]
     resources :classrooms
   end
 
   resources :bible_studies, except: %i[new edit] do
-    resources :bible_study_meetings, except: %i[index new edit]
+    resources :bible_study_meetings, except: %i[new edit]
   end
 
   resources :courses, except: %i[new edit] do
     resources :lectures, except: %i[new edit]
-    resources :course_meetings, except: %i[index new edit]
+    resources :course_meetings, except: %i[new edit]
   end
 
   resources :conferences, except: %i[new edit]
