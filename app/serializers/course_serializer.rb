@@ -13,7 +13,8 @@ class CourseSerializer
     object.course_servants.map do |s|
       {
         id: s.id,
-        name: s.user.name
+        name: s.user.name,
+        total_score: s.total_score
       }
     end
   end
