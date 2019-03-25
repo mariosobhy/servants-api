@@ -1,4 +1,5 @@
 class Course < ApplicationRecord
+  enum score_type: { per_course: 0, per_lecture: 1 }
   belongs_to :responsible, class_name: 'User', foreign_key: 'user_id', inverse_of: :course_responsibilities
   has_many :course_servants, dependent: :destroy
   has_many :servants, through: :course_servants, source: :user
