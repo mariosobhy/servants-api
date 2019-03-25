@@ -14,7 +14,7 @@ class CourseSerializer
       {
         id: s.id,
         name: s.user.name,
-        total_score: s.total_score
+        total_score: s.total_calculated_score
       }
     end
   end

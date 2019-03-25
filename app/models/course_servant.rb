@@ -7,7 +7,7 @@ class CourseServant < ApplicationRecord
   scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
   scope :latest, -> { order('created_at DESC') }
 
-  def total_score 
+  def total_calculated_score 
     if course.score_type == 'per_course'
       total = course.total_score 
     else 
