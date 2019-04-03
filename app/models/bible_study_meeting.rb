@@ -1,4 +1,7 @@
+require 'csv'
+
 class BibleStudyMeeting < ApplicationRecord
+  include Convertable
   REPEAT_TYPES = { 'once' => 0, 'daily' => 1, 'weekly' => 7, 'monthly' => 30, 'yearly' => 365 }.freeze
 
   belongs_to :bible_study
@@ -18,6 +21,12 @@ class BibleStudyMeeting < ApplicationRecord
   scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
   scope :by_date, -> (date) { where('DATE(start_date) = ?', date) }
   scope :latest, -> { order('created_at DESC') }
+
+
+  def self.to_csv 
+    attributes = %w{id bible_study_id name start_date end_date from to repeat }
+    export_csv(attributes)
+  end 
 
   private
 

@@ -1,4 +1,7 @@
+require 'csv'
+
 class CourseMeeting < ApplicationRecord
+  include Convertable
   REPEAT_TYPES = { 'once' => 0, 'daily' => 1, 'weekly' => 7, 'monthly' => 30, 'yearly' => 365 }.freeze
 
   belongs_to :course
@@ -30,4 +33,9 @@ class CourseMeeting < ApplicationRecord
       end
     end
   end
+
+  def self.to_csv 
+    attributes = %w{id course_id name start_date end_date from to repeat }
+    export_csv(attributes)
+  end 
 end

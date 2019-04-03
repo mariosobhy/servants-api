@@ -26,6 +26,14 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def import 
+  end 
+
+  def export 
+    load_users
+    send_data @users.to_csv, file_name: "users-#{Date.today}.csv"
+  end 
+
   private
 
   def load_users

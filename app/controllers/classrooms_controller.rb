@@ -28,6 +28,14 @@ class ClassroomsController < ApplicationController
     render_classroom
   end
 
+  def import 
+  end 
+
+  def export 
+    load_classrooms
+    send_data @classrooms.to_csv, file_name: "classrooms-#{Date.today}.csv"
+  end 
+
   private
 
   def load_classrooms

@@ -28,6 +28,14 @@ class BibleStudyMeetingsController < ApplicationController
     render_meeting
   end
 
+  def import 
+  end 
+
+  def export 
+    load_bible_study_meetings
+    send_data @bible_study_meetings.to_csv, file_name: "bible_study_meetings-#{Date.today}.csv"
+  end 
+
   private
 
   def load_bible_study
