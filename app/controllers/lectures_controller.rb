@@ -25,6 +25,14 @@ class LecturesController < ApplicationController
     render_lecture
   end
 
+  def import 
+  end 
+
+  def export 
+    load_lectures
+    send_data @lectures.to_csv, file_name: "lectures-#{Date.today}.csv"
+  end 
+
   private
 
   def load_lectures

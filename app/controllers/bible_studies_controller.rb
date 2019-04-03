@@ -26,6 +26,20 @@ class BibleStudiesController < ApplicationController
     render_bible_study
   end
 
+  def import 
+    items = []
+    csv_text = File.read(params[:file])
+      CSV.foreach(csv_text, headers: true) do |row|
+        items << BibleStudy.new(row.to_h)
+      end
+    BibleStudy.import(items)
+  end
+
+  def export 
+    load_bible_studies
+    send_data @bible_studies.to_csv, file_name: "bible_studies-#{Date.today}.csv"
+  end 
+
   private
 
   def load_bible_studies

@@ -28,6 +28,14 @@ class OsraMeetingsController < ApplicationController
     render_meeting
   end
 
+  def import 
+  end 
+
+  def export 
+    load_osra_meetings
+    send_data @osra_meetings.to_csv, file_name: "osra-meetings-#{Date.today}.csv"
+  end 
+
   private
 
   def load_osra

@@ -26,6 +26,14 @@ class OsrasController < ApplicationController
     render_osra
   end
 
+  def import 
+  end 
+
+  def export 
+    load_osras
+    send_data @osras.to_csv, file_name: "osras-#{Date.today}.csv"
+  end 
+
   private
 
   def load_osras

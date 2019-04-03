@@ -1,5 +1,5 @@
 class ChurchesController < ApplicationController
-  before_action :load_church, except: %i[index create]
+  before_action :load_church, except: %i[index create export import]
   before_action :load_churches, only: %i[index]
   before_action :build_church, only: %i[create update]
 
@@ -23,6 +23,14 @@ class ChurchesController < ApplicationController
     @church.destroy
     render json: @church
   end
+
+  def import 
+  end 
+
+  def export 
+    load_churches
+    send_data @churches.to_csv, file_name: "churches-#{Date.today}.csv"
+  end 
 
   private
 

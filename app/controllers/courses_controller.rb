@@ -26,6 +26,14 @@ class CoursesController < ApplicationController
     render_course
   end
 
+  def import 
+  end 
+
+  def export 
+    load_courses
+    send_data @courses.to_csv, file_name: "courses-#{Date.today}.csv"
+  end 
+
   private
 
   def load_courses

@@ -26,6 +26,14 @@ class SpiritualDaysController < ApplicationController
     render_spiritual_day
   end
 
+  def import 
+  end 
+
+  def export 
+    load_spiritual_days
+    send_data @spiritual_days.to_csv, file_name: "spiritual-days-#{Date.today}.csv"
+  end 
+
   private
 
   def load_spiritual_days
