@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end 
   end
 
+  resources :church_admins
+
   resources :bible_studies, except: %i[new edit] do
     resources :bible_study_meetings, except: %i[new edit] do 
       collection do 
