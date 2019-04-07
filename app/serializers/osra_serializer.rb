@@ -15,7 +15,8 @@ class OsraSerializer
     object.amin_osras.map do |s|
       {
         id: s.id,
-        name: s.user.name
+        name: s.user.name,
+        church_admin: s.church_admin.user.name
       }
     end 
   end 
