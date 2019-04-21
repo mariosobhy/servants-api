@@ -32,7 +32,7 @@ module ServantsApi
         origins Rails.env.production? ? 'https://servants-frontend.herokuapp.com' : 'localhost:8080'
         resource '*',
                  headers: :any,
-                 expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+                 expose: ['Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
                  methods: :any
       end
     end
