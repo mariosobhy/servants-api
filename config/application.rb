@@ -29,7 +29,7 @@ module ServantsApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        #origins Rails.env.production? ? 'https://servants-frontend.herokuapp.com' : 'localhost:8080'
+        origins Rails.env.production? ? 'https://servants-frontend.herokuapp.com' : 'localhost:8080'
         resource '*',
                  headers: :any,
                  expose: ['Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
