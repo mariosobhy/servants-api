@@ -114,9 +114,9 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
 
   create_table "conferences", force: :cascade do |t|
     t.string "name"
-    t.float "price", default: 0.0
+    t.float "price"
     t.string "place"
-    t.integer "no_of_servants", default: 0
+    t.integer "no_of_servants"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "no_of_attendees", default: 0
@@ -144,8 +144,6 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "total_score"
-    t.integer "score_type"
     t.index ["course_id"], name: "index_course_servants_on_course_id"
     t.index ["user_id"], name: "index_course_servants_on_user_id"
   end
@@ -157,7 +155,6 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "score_type", default: 0
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -185,7 +182,6 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "score", default: 0.0
     t.index ["course_id"], name: "index_lectures_on_course_id"
   end
 
@@ -204,15 +200,6 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_mobile_numbers_on_user_id"
-  end
-
-  create_table "osra_admins", force: :cascade do |t|
-    t.bigint "osra_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["osra_id"], name: "index_osra_admins_on_osra_id"
-    t.index ["user_id"], name: "index_osra_admins_on_user_id"
   end
 
   create_table "osra_meeting_servants", force: :cascade do |t|
