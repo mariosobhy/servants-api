@@ -15,8 +15,8 @@ class Course < ApplicationRecord
   scope :by_year, -> (year = DateTime.now.year) { where('extract(year from created_at) = ?', year) }
   scope :latest, -> { order('created_at DESC') }
 
-  def self.to_csv 
+  def self.to_csv
     attributes = %w{id name no_of_lectures total_score user_id score_type}
     export_csv(attributes)
-  end 
+  end
 end
