@@ -1,7 +1,12 @@
 class ChurchAdminsController < ApplicationController
   def create 
-    build_church_admin
-    save_church_admin
+    if current_user.role == 'super_admin'
+      @user = User.new(role: 'admin')
+      @user.update(user_params)
+      render json: @user
+    else
+      render json: { error: 'you must be super user to create church admins' }
+    end
   end 
 
   def update 
@@ -46,5 +51,9 @@ class ChurchAdminsController < ApplicationController
 
   def church_admin_params 
     params.require(:church_admin).permit(:church_id, :user_id, amin_osras_attributes: %i[ id osra_id user_id _destroy ])
-  end 
+  end
+
+  def user_params
+    params.require(:user).permit(:church_id, :name, :password, :email)
+  end
 end

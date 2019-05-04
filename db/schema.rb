@@ -304,6 +304,7 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.date "holymass_date"
     t.bigint "church_id"
     t.string "address"
+    t.string "role"
     t.datetime "tnawol_date", default: [], array: true
     t.datetime "confession_date", default: [], array: true
     t.index ["church_id"], name: "index_users_on_church_id"
