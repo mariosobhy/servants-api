@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   def build_user
-    @user ||= User.new
+    @user ||= User.new(church_id: current_user.church_id)
     @user.attributes = user_params
   end
 
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :church_id, :password, :password_confirmation,
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,
                                  :address, :birth_date, :holymass_date,
                                  :tnawol_date, hobbies_attributes: %i[ id user_id name _destroy],
                                  mobile_numbers_attributes: %i[id user_id number _destroy],

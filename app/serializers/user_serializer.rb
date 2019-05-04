@@ -1,6 +1,6 @@
 class UserSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :email, :birth_date, :address, :confession_date, :holymass_date, :tnawol_date, :uid
+  attributes :name, :email, :birth_date, :address, :confession_date, :holymass_date, :tnawol_date, :uid, :id
 
   attribute :church do |object| 
     {
