@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "pray_before_service", default: false
+    t.datetime "attend_time"
+    t.boolean "preparation", default: false
+    t.boolean "lecturing", default: false
+    t.integer "missing_by_phone", default: 0
+    t.integer "missing_by_visit", default: 0
+    t.boolean "osra_preparing_meeting", default: false
     t.index ["event_id"], name: "index_attendees_on_event_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
   end
