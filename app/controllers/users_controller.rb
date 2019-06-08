@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   def build_user
-    @user ||= User.new(church_id: current_user.church_id)
+    @user ||= User.new(church_id: current_user.church_id, role: 'servant')
     @user.attributes = user_params
   end
 
