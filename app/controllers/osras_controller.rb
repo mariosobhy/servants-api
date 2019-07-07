@@ -54,7 +54,14 @@ class OsrasController < ApplicationController
   end
 
   def save_osra
+    isNewRecord = @osra.new_record?
     if @osra.save
+      if isNewRecord
+          @osra_servant = OsraServant.create!(
+            osra_id: @osra.id,
+            user_id: current_user.id
+          )
+      end
       render_osra
     else
       render_osra_errors

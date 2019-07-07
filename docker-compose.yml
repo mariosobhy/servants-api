@@ -1,0 +1,35 @@
+version: "3.4"
+
+volumes:
+    pg_data: {}
+
+services:
+  app:
+    # container_name: oyster-api0
+    build:
+        context: .
+    tty: true
+    depends_on: 
+        - db
+    # ports:
+    #   - "3000:3000"
+    environment:
+        PORT: 3000
+        NAME: task-1
+        DATABASE_URL: postgres://servants:password@localhost/servants
+        SECRET_KEY_BASE: 123456
+    network_mode: host
+ 
+  db:
+    image: postgres:9.6
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+    environment:
+      POSTGRES_USER: servants
+      POSTGRES_DB: servants
+      POSTGRES_PASSWORD: password
+    network_mode: host
+    restart: unless-stopped
+

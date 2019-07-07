@@ -12,5 +12,6 @@ User.create!(
   name: 'Admin',
   email: 'admin@example.com',
   password: 'admin@example.com',
-  church: church
+  church: church,
+  role: 'super_admin'
 )

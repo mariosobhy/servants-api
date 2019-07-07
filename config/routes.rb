@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   end 
 
   resources :events, only: %i[] do
-    resources :attendees, only: %i[create destroy] do 
+    resources :attendees, only: %i[create destroy edit update] do 
       collection do 
         post :import
         get :export
