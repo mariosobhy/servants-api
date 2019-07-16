@@ -55,6 +55,9 @@ class OsrasController < ApplicationController
 
   def save_osra
     isNewRecord = @osra.new_record?
+    if isNewRecord
+      @osra.church_id = current_user.church_id
+    end
     if @osra.save
       if isNewRecord
           @osra_servant = OsraServant.create!(

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_06_003527) do
+ActiveRecord::Schema.define(version: 2019_07_16_142957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,9 +121,9 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
 
   create_table "conferences", force: :cascade do |t|
     t.string "name"
-    t.float "price"
+    t.float "price", default: 0.0
     t.string "place"
-    t.integer "no_of_servants"
+    t.integer "no_of_servants", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "no_of_attendees", default: 0
@@ -250,6 +250,8 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "church_id"
+    t.index ["church_id"], name: "index_osras_on_church_id"
   end
 
   create_table "spiritual_day_servants", force: :cascade do |t|
@@ -311,9 +313,9 @@ ActiveRecord::Schema.define(version: 2019_04_06_003527) do
     t.date "holymass_date"
     t.bigint "church_id"
     t.string "address"
-    t.string "role"
     t.datetime "tnawol_date", default: [], array: true
     t.datetime "confession_date", default: [], array: true
+    t.string "role"
     t.index ["church_id"], name: "index_users_on_church_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
